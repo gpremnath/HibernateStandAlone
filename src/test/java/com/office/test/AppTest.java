@@ -23,9 +23,16 @@ public void InsertTest() {
 
 		List <Student> students = (List <Student> )session.createQuery(" from Student").list();
 		for ( Student s: students){
-			System.out.println("Details "+s);
+			System.out.println("Details "+s.getAddress());
 		}
-
+       
+        session.beginTransaction();
+         
+		for ( Student s: students){
+            if(session.contains(s))
+			    session.delete(s);
+		}
+        session.getTransaction().commit();
 		session.close();
 
 	}

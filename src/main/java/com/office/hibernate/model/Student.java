@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.persistence.CascadeType;
 
 import com.office.hibernate.model.Address;
 
@@ -30,7 +31,7 @@ public class Student  {
 	@Column(name="section")
 	String section;
 
-	@OneToOne	
+	@OneToOne(cascade ={CascadeType.REMOVE})
 	@JoinColumn(name="address_id")
 	Address address;
 
