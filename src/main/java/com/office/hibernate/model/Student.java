@@ -6,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.CascadeType;
 
 import com.office.hibernate.model.Address;
+import com.office.hibernate.model.FBProfile;
 
 
 @Entity
@@ -34,6 +36,11 @@ public class Student  {
 	@OneToOne(cascade ={CascadeType.REMOVE})
 	@JoinColumn(name="address_id")
 	Address address;
+	
+    @OneToOne(cascade ={CascadeType.ALL})
+	@PrimaryKeyJoinColumn
+	FBProfile fbProfile;
+
 
 
 
@@ -46,13 +53,27 @@ public class Student  {
 	}	
 
 
-	public void setAddress(Address address){
+	public int  getId() {
+		return studentId;
+	}
+	
+    public void setAddress(Address address){
 		this.address=address;
 	}	
 
 
 	public Address  getAddress(){
 		return address;
+	}
+
+
+	public void setFbProfile(FBProfile fbProfile){
+		this.fbProfile = fbProfile;
+	}	
+
+
+	public FBProfile  getFbProfile(){
+		return fbProfile;
 	}
 
 	
@@ -89,7 +110,8 @@ public class Student  {
 	@Override
     	public String toString() {
 		return "Student [id=" + studentId+ ", First Name=" + firstName + ", Last Name=" + lastName
-                	+ ", section=" + section + "]";
+                		+ ", section=" + section + ""
+            + ", profile=" + fbProfile + "]";
     
 	}	
 	

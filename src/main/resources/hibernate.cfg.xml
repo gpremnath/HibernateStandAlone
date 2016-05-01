@@ -13,5 +13,6 @@
         <property name="format_sql">false</property>
         <mapping class="com.office.hibernate.model.Student"/>
         <mapping class="com.office.hibernate.model.Address"/>
+        <mapping class="com.office.hibernate.model.FBProfile"/>
     </session-factory>
 </hibernate-configuration>
