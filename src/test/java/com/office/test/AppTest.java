@@ -1,6 +1,7 @@
 package com.office.test;
 
 import org.hibernate.Session;
+import org.hibernate.Query;
 import org.junit.Test;
 import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
@@ -8,6 +9,7 @@ import com.office.hibernate.model.Student;
 import com.office.hibernate.model.ClassRoom;
 import com.office.hibernate.util.HibernateUtil;
 import java.util.List;
+import java.util.Optional;
 
 public class  AppTest {
 
@@ -20,20 +22,33 @@ public void InsertTest() {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+
+		Query classRoomQuery = session.createQuery(" from ClassRoom as C where C.division=:division");
+		classRoomQuery.setParameter("division","A");					
+
+		List <ClassRoom> classRoomList = (List <ClassRoom>)classRoomQuery.list();
+		Optional<ClassRoom> classRoomDb = classRoomList.stream().findFirst();
 		session.persist(address);
-		session.persist(classRoom);
+		
+		if(classRoomDb.isPresent()){
+			student.setClassRoom(classRoomDb.get());
+		}	
+		else{
+			session.save(classRoom);
+			student.setClassRoom(classRoom);
+		    }	
+		
 		student.setAddress(address);
 		session.persist(student);
 	        profile.setId(student.getId());
         	student.setFbProfile(profile);
-		student.setClassRoom(classRoom);
-        	session.persist(student);
+		session.persist(student);
 		session.getTransaction().commit();
 
 		List <Student> students = (List <Student> )session.createQuery(" from Student").list();
 		for ( Student s: students){
 			System.out.println("Details "+s);
-			System.out.println("Address "+s.getAddress());
+//			System.out.println("Address "+s.getAddress());
 		}
        
         session.beginTransaction();

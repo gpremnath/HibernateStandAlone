@@ -125,7 +125,7 @@ public class Student  {
     	public String toString() {
 		return "Student [id=" + studentId+ ", First Name=" + firstName + ", Last Name=" + lastName
                 		+ ", section=" + section + ""
-                		+ ", classroom" + classRoom + ""
+                		+ ", " + classRoom + ""
             + ", profile=" + fbProfile + "]";
     
 	}	
