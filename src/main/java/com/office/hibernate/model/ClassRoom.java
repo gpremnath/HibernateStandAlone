@@ -21,12 +21,22 @@ public class ClassRoom {
     @Column (name ="building_name")
     private String block;
 
+
+    public ClassRoom(){}	
+
+    public ClassRoom(String division,String block){
+    
+	this.division=division;
+	this.block=block;
+    
+    }	
+
     public long getId(){
         return id;
     }
 
     public void setId(long id){
-            this.id=id
+            this.id=id;
     }
 
     public String getDivision(){
@@ -44,6 +54,10 @@ public class ClassRoom {
     public void setBlock(String block){
         this.block=block;
     }
+
+    public String toString(){
+       return "ClassRoom [ division = "+division+" , block = "+block+" ]";  	
+   }	
 }
 
 

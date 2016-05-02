@@ -5,6 +5,7 @@ import org.junit.Test;
 import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
 import com.office.hibernate.model.Student;
+import com.office.hibernate.model.ClassRoom;
 import com.office.hibernate.util.HibernateUtil;
 import java.util.List;
 
@@ -15,15 +16,18 @@ public void InsertTest() {
 		Student student= new Student("Sam","Disilva","Maths");
 		Address address= new Address("10 Silver street","NYC","USA");
 		FBProfile profile= new FBProfile("gpremnath","password","http://facebook.com");
+		ClassRoom classRoom=new ClassRoom("A","South Block");
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.persist(address);
+		session.persist(classRoom);
 		student.setAddress(address);
 		session.persist(student);
-        profile.setId(student.getId());
-        student.setFbProfile(profile);
-        session.persist(student);
+	        profile.setId(student.getId());
+        	student.setFbProfile(profile);
+		student.setClassRoom(classRoom);
+        	session.persist(student);
 		session.getTransaction().commit();
 
 		List <Student> students = (List <Student> )session.createQuery(" from Student").list();

@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.CascadeType;
 
 import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
+import com.office.hibernate.model.ClassRoom;
 
 
 @Entity
@@ -37,10 +39,13 @@ public class Student  {
 	@JoinColumn(name="address_id")
 	Address address;
 	
-    @OneToOne(cascade ={CascadeType.ALL})
+	@OneToOne(cascade ={CascadeType.ALL})
 	@PrimaryKeyJoinColumn
 	FBProfile fbProfile;
 
+	@ManyToOne(optional=false)
+	@JoinColumn(name="classroom_id")
+	ClassRoom classRoom;
 
 
 
@@ -57,7 +62,7 @@ public class Student  {
 		return studentId;
 	}
 	
-    public void setAddress(Address address){
+    	public void setAddress(Address address){
 		this.address=address;
 	}	
 
@@ -106,11 +111,21 @@ public class Student  {
 		return section;
 	}	
 
+	public void setClassRoom(ClassRoom classRoom){
+		this.classRoom=classRoom;
+	}	
+
+
+	public ClassRoom getClassRoom(){
+		return classRoom;
+	}	
+
 	
 	@Override
     	public String toString() {
 		return "Student [id=" + studentId+ ", First Name=" + firstName + ", Last Name=" + lastName
                 		+ ", section=" + section + ""
+                		+ ", classroom" + classRoom + ""
             + ", profile=" + fbProfile + "]";
     
 	}	
