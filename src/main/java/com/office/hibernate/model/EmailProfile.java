@@ -15,10 +15,11 @@ import com.office.hibernate.model.Student;
 @Table (name="student_email_details")
 public class EmailProfile {
 
-    @Id
-    @Column(name="mail_id")
-    @GeneratedValue(generator="gen")
-   @GenericGenerator(name="gen",strategy="foreign",parameters=@Parameter(name="property",value="student"))		
+    @Id  
+    @Column(name="mail_id")  
+    @GeneratedValue(generator="gen")  
+    @GenericGenerator(name="gen", strategy="foreign",   
+    parameters=@Parameter(name="property", value="student"))  
     private long id;
 
     @Column(name="mail_username")

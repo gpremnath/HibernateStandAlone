@@ -25,7 +25,7 @@ public class Student  {
 	@Id
 	@GeneratedValue
 	@Column(name="student_id")
-	Integer studentId;
+	long studentId;
 	
 	@Column(name="first_name")
 	String firstName;
@@ -62,7 +62,8 @@ public class Student  {
 	}	
 
 
-	public int  getId() {
+	public long  getId() {
+
 		return studentId;
 	}
 	
@@ -139,6 +140,7 @@ public class Student  {
 		return "Student [id=" + studentId+ ", First Name=" + firstName + ", Last Name=" + lastName
                 		+ ", section=" + section + ""
                 		+ ", " + classRoom + ""
+                		+ ", " +  emailProfile+ " "
             + ", profile=" + fbProfile + "]";
     
 	}	

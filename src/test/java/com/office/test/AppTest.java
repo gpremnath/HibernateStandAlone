@@ -18,7 +18,7 @@ public class  AppTest {
 public void InsertTest() {
 		Student student= new Student("Sam","Disilva","Maths");
 		Address address= new Address("10 Silver street","NYC","USA");
-		FBProfile profile= new FBProfile("gpremnath","password","http://facebook.com");
+		FBProfile fbprofile= new FBProfile("gpremnath","password","http://facebook.com");
 		EmailProfile emailprofile= new EmailProfile("gnath","password","gmail.com");
 		ClassRoom classRoom=new ClassRoom("A","South Block");
 
@@ -41,12 +41,12 @@ public void InsertTest() {
 		    }	
 		
 		student.setAddress(address);
-                emailprofile.setStudent(student);
 		student.setEmailProfile(emailprofile);
-                
-		session.persist(student);
-	        profile.setId(student.getId());
-        	student.setFbProfile(profile);
+                emailprofile.setStudent(student);
+		session.save(student);
+	        
+		fbprofile.setId(student.getId());
+        	student.setFbProfile(fbprofile);
 		session.persist(student);
 		session.getTransaction().commit();
 
