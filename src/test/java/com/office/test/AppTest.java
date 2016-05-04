@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.junit.Test;
 import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
+import com.office.hibernate.model.EmailProfile;
 import com.office.hibernate.model.Student;
 import com.office.hibernate.model.ClassRoom;
 import com.office.hibernate.util.HibernateUtil;
@@ -18,6 +19,7 @@ public void InsertTest() {
 		Student student= new Student("Sam","Disilva","Maths");
 		Address address= new Address("10 Silver street","NYC","USA");
 		FBProfile profile= new FBProfile("gpremnath","password","http://facebook.com");
+		EmailProfile emailprofile= new EmailProfile("gnath","password","gmail.com");
 		ClassRoom classRoom=new ClassRoom("A","South Block");
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -39,6 +41,9 @@ public void InsertTest() {
 		    }	
 		
 		student.setAddress(address);
+                emailprofile.setStudent(student);
+		student.setEmailProfile(emailprofile);
+                
 		session.persist(student);
 	        profile.setId(student.getId());
         	student.setFbProfile(profile);

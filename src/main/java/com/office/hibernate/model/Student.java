@@ -14,6 +14,7 @@ import javax.persistence.CascadeType;
 
 import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
+import com.office.hibernate.model.EmailProfile;
 import com.office.hibernate.model.ClassRoom;
 
 
@@ -43,6 +44,9 @@ public class Student  {
 	@PrimaryKeyJoinColumn
 	FBProfile fbProfile;
 
+	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
+        EmailProfile emailProfile;
+	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="classroom_id")
 	ClassRoom classRoom;
@@ -87,6 +91,15 @@ public class Student  {
 	}	
 
 
+	public void setEmailProfile(EmailProfile emailProfile){
+		this.emailProfile = emailProfile;
+	}	
+
+
+	public EmailProfile  getEmailProfile(){
+		return emailProfile;
+	}
+		
 	public String getFirstName(){
 		return firstName;
 	}	
