@@ -21,3 +21,7 @@ create table classroom (
 alter table student  add column classroom_id integer;
 
 alter table student  add constraint fk_classroom FOREIGN KEY (classroom_id) REFERENCES classroom;
+
+create table student_email_details (mail_id integer,mail_username varchar(50), mail_password varchar(16),mail_account varchar(25));
+
+alter table student_email_details add constraint student_email_fk FOREIGN KEY (mail_id) REFERENCES student ON DELETE CASCADE;
