@@ -16,6 +16,7 @@ import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
 import com.office.hibernate.model.EmailProfile;
 import com.office.hibernate.model.ClassRoom;
+import com.office.hibernate.model.University;
 
 
 @Entity
@@ -50,6 +51,10 @@ public class Student  {
 	@ManyToOne(optional=false)
 	@JoinColumn(name="classroom_id")
 	ClassRoom classRoom;
+
+	@ManyToOne(optional=false)
+	@JoinColumn(name="university_id")
+	University university;
 
 
 
@@ -134,6 +139,15 @@ public class Student  {
 		return classRoom;
 	}	
 
+	public void setUniversity(University university){
+		this.university=university;
+	}	
+
+
+	public University getUniversity(){
+		return university;
+	}	
+
 	
 	@Override
     	public String toString() {
@@ -141,6 +155,7 @@ public class Student  {
                 		+ ", section=" + section + ""
                 		+ ", " + classRoom + ""
                 		+ ", " +  emailProfile+ " "
+                		+ ", " +  university+ " "
             + ", profile=" + fbProfile + "]";
     
 	}	

@@ -25,3 +25,7 @@ alter table student  add constraint fk_classroom FOREIGN KEY (classroom_id) REFE
 create table student_email_details (mail_id integer,mail_username varchar(50), mail_password varchar(16),mail_account varchar(25));
 
 alter table student_email_details add constraint student_email_fk FOREIGN KEY (mail_id) REFERENCES student ON DELETE CASCADE;
+
+ALTER TABLE STUDENT ADD COLUMN university_id integer;
+
+ALTER TABLE STUDENT ADD CONSTRAINT student_university_fk  FOREIGN KEY (university_id) REFERENCES UNIVERSITY; 

@@ -16,5 +16,6 @@
         <mapping class="com.office.hibernate.model.FBProfile"/>
         <mapping class="com.office.hibernate.model.ClassRoom"/>
         <mapping class="com.office.hibernate.model.EmailProfile"/>
+        <mapping class="com.office.hibernate.model.University"/>
     </session-factory>
 </hibernate-configuration>

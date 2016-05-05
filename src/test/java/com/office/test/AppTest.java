@@ -14,8 +14,8 @@ import java.util.Optional;
 
 public class  AppTest {
 
-@Test
-public void InsertTest() {
+	@Test
+	public void InsertTest() {
 		Student student= new Student("Sam","Disilva","Maths");
 		Address address= new Address("10 Silver street","NYC","USA");
 		FBProfile fbprofile= new FBProfile("gpremnath","password","http://facebook.com");
@@ -34,11 +34,10 @@ public void InsertTest() {
 		
 		if(classRoomDb.isPresent()){
 			student.setClassRoom(classRoomDb.get());
-		}	
-		else{
+		}else{
 			session.save(classRoom);
 			student.setClassRoom(classRoom);
-		    }	
+		}	
 		
 		student.setAddress(address);
 		student.setEmailProfile(emailprofile);
@@ -56,18 +55,16 @@ public void InsertTest() {
 //			System.out.println("Address "+s.getAddress());
 		}
        
-        session.beginTransaction();
+        	session.beginTransaction();
          
 		for ( Student s: students){
             if(session.contains(s))
 			    session.delete(s);
 		}
-        session.getTransaction().commit();
+        	session.getTransaction().commit();
 		session.close();
 
 	}
-
-
 
 
 }
