@@ -25,8 +25,8 @@ public class FBProfile {
     private String url;
 
 
-/*    public FBProfile(){
-    }*/
+    public FBProfile(){
+    }
 
     public FBProfile(String userId, String password, String url){
     

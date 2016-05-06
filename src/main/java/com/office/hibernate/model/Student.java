@@ -37,21 +37,27 @@ public class Student  {
 	@Column(name="section")
 	String section;
 
+	/*Uni-directional*/
 	@OneToOne(cascade ={CascadeType.REMOVE})
 	@JoinColumn(name="address_id")
 	Address address;
 	
+	/*Uni-directional PK join column*/
 	@OneToOne(cascade ={CascadeType.ALL})
 	@PrimaryKeyJoinColumn
 	FBProfile fbProfile;
 
-	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
-        EmailProfile emailProfile;
+	/*Bi-directional PK join column*/
+    @OneToOne(mappedBy="student", cascade = CascadeType.ALL)
+    EmailProfile emailProfile;
 	
+	/*Uni-directional*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="classroom_id")
 	ClassRoom classRoom;
 
+
+	/*Bi-directional*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="university_id")
 	University university;
