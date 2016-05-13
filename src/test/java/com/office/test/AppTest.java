@@ -9,6 +9,7 @@ import com.office.hibernate.model.EmailProfile;
 import com.office.hibernate.model.Student;
 import com.office.hibernate.model.ClassRoom;
 import com.office.hibernate.model.University;
+import com.office.hibernate.model.TextBook;
 import com.office.hibernate.util.HibernateUtil;
 import java.util.List;
 import java.util.ArrayList;
@@ -21,7 +22,11 @@ public class  AppTest {
         List <Student> universityStudents = new ArrayList<Student>();
         Student samStudent = new Student("Sam","Disilva","Maths");
 		Student einstenStudent = new Student("Albert","Einsten","Physics");
-        
+        TextBook physicsText= new TextBook("RESNIK","FUNDEMENTALS OF PHYSICS");
+        TextBook mathsText= new TextBook("RUSSEL","FUNDEMENTALS OF MATHS");
+
+
+
 		Address address= new Address("10 Silver street","NYC","USA");
 		FBProfile fbprofile= new FBProfile("gpremnath","password","http://facebook.com");
 		EmailProfile emailprofile= new EmailProfile("gnath","password","gmail.com");
@@ -77,6 +82,14 @@ public class  AppTest {
 		fbprofile.setId(einstenStudent.getId());
        	samStudent.setFbProfile(fbprofile);
        	einstenStudent.setFbProfile(fbprofile);
+        
+        einstenStudent.getTextBooks().add(physicsText);
+        einstenStudent.getTextBooks().add(mathsText);
+
+        samStudent.getTextBooks().add(physicsText);
+        samStudent.getTextBooks().add(mathsText);
+
+
 		session.persist(samStudent);
 		session.persist(einstenStudent);
 		session.getTransaction().commit();

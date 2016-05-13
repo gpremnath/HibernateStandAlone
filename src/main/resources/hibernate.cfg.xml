@@ -17,5 +17,6 @@
         <mapping class="com.office.hibernate.model.ClassRoom"/>
         <mapping class="com.office.hibernate.model.EmailProfile"/>
         <mapping class="com.office.hibernate.model.University"/>
+        <mapping class="com.office.hibernate.model.TextBook"/>
     </session-factory>
 </hibernate-configuration>

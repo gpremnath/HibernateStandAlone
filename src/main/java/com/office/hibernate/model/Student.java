@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,9 @@ import com.office.hibernate.model.FBProfile;
 import com.office.hibernate.model.EmailProfile;
 import com.office.hibernate.model.ClassRoom;
 import com.office.hibernate.model.University;
-
+import com.office.hibernate.model.TextBook;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name="student")
@@ -62,6 +66,12 @@ public class Student  {
 	@JoinColumn(name="university_id")
 	University university;
 
+	/*Bi-directional*/
+	@ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="student_textbook",
+       joinColumns={ @JoinColumn(name="student_id")},
+       inverseJoinColumns={@JoinColumn(name="textbook_id")})
+	private List <TextBook> textBooks = new ArrayList<TextBook>();
 
 
 	public Student(){}	
@@ -152,6 +162,15 @@ public class Student  {
 
 	public University getUniversity(){
 		return university;
+	}	
+
+	public void setTextBooks(List<TextBook> textBooks){
+		this.textBooks=textBooks;
+	}	
+
+
+	public List<TextBook> getTextBooks(){
+		return textBooks;
 	}	
 
 	

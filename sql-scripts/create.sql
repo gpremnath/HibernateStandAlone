@@ -29,3 +29,11 @@ alter table student_email_details add constraint student_email_fk FOREIGN KEY (m
 ALTER TABLE STUDENT ADD COLUMN university_id integer;
 
 ALTER TABLE STUDENT ADD CONSTRAINT student_university_fk  FOREIGN KEY (university_id) REFERENCES UNIVERSITY; 
+
+CREATE TABLE TEXTBOOK (textbook_id SERIAL PRIMARY KEY, author varchar(60), name varchar (255));
+
+ALTER TABLE STUDENT_TEXTBOOK ADD PRIMARY KEY (student_id,textbook_id);
+
+ALTER TABLE STUDENT_TEXTBOOK ADD CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES STUDENT;
+
+ALTER TABLE STUDENT_TEXTBOOK ADD CONSTRAINT fk_textbook FOREIGN KEY (textbook_id) REFERENCES TEXTBOOK;
