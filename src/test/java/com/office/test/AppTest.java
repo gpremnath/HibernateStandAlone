@@ -22,15 +22,25 @@ public class  AppTest {
         List <Student> universityStudents = new ArrayList<Student>();
         Student samStudent = new Student("Sam","Disilva","Maths");
 		Student einstenStudent = new Student("Albert","Einsten","Physics");
+        
+        /* With  Student have many to many bi-directional relation */
         TextBook physicsText= new TextBook("RESNIK","FUNDEMENTALS OF PHYSICS");
         TextBook mathsText= new TextBook("RUSSEL","FUNDEMENTALS OF MATHS");
 
 
-
+        /* With Student have one to one unidirectional relation*/
 		Address address= new Address("10 Silver street","NYC","USA");
+        
+        /* With  Student have one to one unidirectional relation with primary key join column*/
 		FBProfile fbprofile= new FBProfile("gpremnath","password","http://facebook.com");
+        
+        /* With Student have one to one bi-directional relation with primary key join column*/
 		EmailProfile emailprofile= new EmailProfile("gnath","password","gmail.com");
-		ClassRoom classRoom=new ClassRoom("A","South Block");
+		
+        /* With  Student have one to many uni-directional relation */
+        ClassRoom classRoom=new ClassRoom("A","South Block");
+        
+        /* With  Student have one to many bi-directional relation */
 		University university=new University("Berkley");
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
