@@ -32,6 +32,8 @@ ALTER TABLE STUDENT ADD CONSTRAINT student_university_fk  FOREIGN KEY (universit
 
 CREATE TABLE TEXTBOOK (textbook_id SERIAL PRIMARY KEY, author varchar(60), name varchar (255));
 
+CREATE TABLE STUDENT_TEXTBOOK (student_id integer,textbook_id integer);
+
 ALTER TABLE STUDENT_TEXTBOOK ADD PRIMARY KEY (student_id,textbook_id);
 
 ALTER TABLE STUDENT_TEXTBOOK ADD CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES STUDENT;

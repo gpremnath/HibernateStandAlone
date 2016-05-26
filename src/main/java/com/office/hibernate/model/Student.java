@@ -13,6 +13,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.CascadeType;
+import javax.persistence.Enumerated;
+import org.hibernate.annotations.Type;
 
 import com.office.hibernate.model.Address;
 import com.office.hibernate.model.FBProfile;
@@ -20,6 +22,7 @@ import com.office.hibernate.model.EmailProfile;
 import com.office.hibernate.model.ClassRoom;
 import com.office.hibernate.model.University;
 import com.office.hibernate.model.TextBook;
+import com.office.hibernate.type.GenderType;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -40,6 +43,11 @@ public class Student  {
 
 	@Column(name="section")
 	String section;
+	
+	@Column(name="gender")
+	@Type(type = "com.office.hibernate.type.PGEnumUserType" ,
+    parameters ={@org.hibernate.annotations.Parameter(name = "enumClassName",value = "com.office.hibernate.type.GenderType")} )
+	GenderType gender= GenderType.MALE;
 
 	/*Uni-directional*/
 	@OneToOne(cascade ={CascadeType.REMOVE})
@@ -145,6 +153,15 @@ public class Student  {
 	public String getSection(){
 		return section;
 	}	
+	
+	public void setGender(GenderType gender){
+		this.gender=gender;		
+	}	
+
+
+	public GenderType getGender(){
+		return gender;
+	}	
 
 	public void setClassRoom(ClassRoom classRoom){
 		this.classRoom=classRoom;
@@ -177,7 +194,8 @@ public class Student  {
 	@Override
     	public String toString() {
 		return "Student [id=" + studentId+ ", First Name=" + firstName + ", Last Name=" + lastName
-                		+ ", section=" + section + ""
+                		+ ", section =" + section + ""
+						+ ", gender = " + gender + ""
                 		+ ", " + classRoom + ""
                 		+ ", " +  emailProfile+ " "
                 		+ ", " +  university+ " "
