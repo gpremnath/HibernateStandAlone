@@ -1,8 +1,8 @@
-
+CREATE TYPE gender_type AS ENUM ('MALE', 'FEMALE');
 create table student_address(address_id serial primary key, street text, city text, country text);
 
 create table student(student_id serial primary key, address_id int , first_name varchar(30), last_name varchar(30), section varchar(15));
-
+ALTER TABLE student ADD COLUMN gender gender_type not null default 'MALE'::gender_type;
 alter table student add constraint fk_student_address foreign key(address_id) references student_address;
 
 CREATE SEQUENCE hibernate_sequence START WITH 1 INCREMENT BY 1 ;
@@ -27,6 +27,8 @@ create table student_email_details (mail_id integer,mail_username varchar(50), m
 alter table student_email_details add constraint student_email_fk FOREIGN KEY (mail_id) REFERENCES student ON DELETE CASCADE;
 
 ALTER TABLE STUDENT ADD COLUMN university_id integer;
+
+CREATE TABLE UNIVERSITY (UNIVERSITY_ID SERIAL PRIMARY KEY, NAME VARCHAR(50));
 
 ALTER TABLE STUDENT ADD CONSTRAINT student_university_fk  FOREIGN KEY (university_id) REFERENCES UNIVERSITY; 
 
